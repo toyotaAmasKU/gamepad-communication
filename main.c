@@ -5,7 +5,15 @@
 
 #include <stdio.h>
 
+#include "hidapi.h"
+
 int main(int argc, char *argv[])
 {
+    int response;
+
+    response = hid_init();
+
+    response = hid_exit();
+
     return 0;
 }
