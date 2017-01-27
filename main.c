@@ -8,6 +8,7 @@
 #include "hidapi.h"
 
 #define MAX_STR 255
+#define BUFFER_SIZE 65
 
 #define LOGITECT_VID 0x046d
 #define GAMEPAD_PID 0xc219
@@ -16,6 +17,7 @@ int main(int argc, char *argv[])
 {
     hid_device *handle;
     wchar_t wstr[MAX_STR];
+    unsigned char buffer[BUFFER_SIZE];
     int response;
 
     response = hid_init();
@@ -26,6 +28,19 @@ int main(int argc, char *argv[])
 
     response = hid_get_product_string(handle, wstr, MAX_STR);
     printf("%ls\n", wstr);
+
+    while(1)
+    {
+        response = 0;
+        response = hid_read(handle, buffer, BUFFER_SIZE);
+
+        int i;
+        for(i = 0; i < response; i++)
+        {
+            printf("%02hhx ", buffer[i]);
+        }
+        printf("\n");
+    }
 
     hid_close(handle);
     response = hid_exit();
