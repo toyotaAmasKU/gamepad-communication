@@ -1,8 +1,12 @@
 # gamepad-communication
 
-### How to use:
+### How to build:
 ```
 make
+```
+
+### How to use:
+```
 sudo ./main.elf <raspberri pi ip address> <x-axis port> <y-axis port>
 ```
 
