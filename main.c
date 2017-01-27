@@ -15,7 +15,6 @@
 
 #include "udp.h"
 
-#define MAX_STR 255
 #define BUFFER_SIZE 65
 
 #define SAMPLE_TIME 0.01
@@ -33,18 +32,11 @@ int main(int argc, char *argv[])
     const int y_axis_port  = atoi(argv[3]);
 
     hid_device *handle;
-    wchar_t wstr[MAX_STR];
     unsigned char buffer[BUFFER_SIZE];
     int response;
 
     response = hid_init();
     handle = hid_open(LOGITECT_VID, GAMEPAD_PID, NULL);
-
-    response = hid_get_manufacturer_string(handle, wstr, MAX_STR);
-    printf("%ls\n", wstr);
-
-    response = hid_get_product_string(handle, wstr, MAX_STR);
-    printf("%ls\n", wstr);
 
     hid_set_nonblocking(handle, 1);
 
