@@ -7,12 +7,12 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include <arpa/inet.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
-#include <string.h>
 
 #include "hidapi.h"
+
+#include "udp.h"
 
 #define MAX_STR 255
 #define BUFFER_SIZE 65
@@ -56,24 +56,13 @@ int main(int argc, char *argv[])
     hid_set_nonblocking(handle, 1);
 
     struct sockaddr_in server_x, server_y;
-    socklen_t address_size_x, address_size_y;
     int client_socket_x, client_socket_y;
 
     client_socket_x = socket(PF_INET, SOCK_DGRAM, 0);
     client_socket_y = socket(PF_INET, SOCK_DGRAM, 0);
 
-    server_x.sin_family = AF_INET;
-    server_x.sin_port = htons(x_axis_port);
-    server_x.sin_addr.s_addr = inet_addr(rpi_ip);
-    memset(server_x.sin_zero, '\0', sizeof(server_x.sin_zero));
-
-    server_y.sin_family = AF_INET;
-    server_y.sin_port = htons(y_axis_port);
-    server_y.sin_addr.s_addr = inet_addr(rpi_ip);
-    memset(server_y.sin_zero, '\0', sizeof(server_y.sin_zero));
-
-    address_size_x = sizeof(server_x);
-    address_size_y = sizeof(server_y);
+    server_x = init_socket_address(rpi_ip, x_axis_port);
+    server_y = init_socket_address(rpi_ip, y_axis_port);
 
     while(1)
     {
@@ -89,8 +78,8 @@ int main(int argc, char *argv[])
 
         printf("x = %d  y = %d\n", x, y);
 
-        sendto(client_socket_x, &x, sizeof(x), 0, (struct sockaddr *)&server_x, address_size_x);
-        sendto(client_socket_y, &y, sizeof(y), 0, (struct sockaddr *)&server_y, address_size_y);
+        udp_send(client_socket_x, x, server_x);
+        udp_send(client_socket_y, y, server_y);
 
         usleep(SAMPLE_TIME * MEGA);
     }

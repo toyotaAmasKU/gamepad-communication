@@ -1,5 +1,10 @@
+# 
+# Author: Natchanan Thongtem
+# Created on: 01/28/2017
+#
+
 CFLAGS=-Wall -Iinclude/
-OBJS=hid.o
+OBJS=hid.o udp.o
 
 LIBS_UDEV=`pkg-config libudev --libs` -lrt
 
