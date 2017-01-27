@@ -29,6 +29,8 @@ int main(int argc, char *argv[])
     response = hid_get_product_string(handle, wstr, MAX_STR);
     printf("%ls\n", wstr);
 
+    hid_set_nonblocking(handle, 1);
+
     while(1)
     {
         response = 0;
