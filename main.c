@@ -80,13 +80,6 @@ int main(int argc, char *argv[])
         response = 0;
         response = hid_read(handle, buffer, BUFFER_SIZE);
 
-        int i;
-        for(i = 0; i < response; i++)
-        {
-            printf("%02hhx ", buffer[i]);
-        }
-        printf("\n");
-
         signed char x, y;
 
         x = buffer[LEFT_ANALOG_X_AXIS] - MAGIC_NUMBER_FOR_GAMEPAD;
