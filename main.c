@@ -11,23 +11,16 @@
 #include <netinet/in.h>
 
 #include "hidapi.h"
+#include "gamepad.h"
 
 #include "udp.h"
 
 #define MAX_STR 255
 #define BUFFER_SIZE 65
 
-#define LOGITECT_VID 0x046d
-#define GAMEPAD_PID 0xc219
-
-#define LEFT_ANALOG_X_AXIS 1
-#define LEFT_ANALOG_Y_AXIS 2
-#define RIGHT_ANALOG_X_AXIS 3
-#define RIGHT_ANALOG_Y_AXIS 4
-#define MAGIC_NUMBER_FOR_GAMEPAD 128
+#define SAMPLE_TIME 0.01
 
 #define MEGA 1000000
-#define SAMPLE_TIME 0.01
 
 int main(int argc, char *argv[])
 {
