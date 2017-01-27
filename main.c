@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include <arpa/inet.h>
 #include <sys/socket.h>
@@ -24,6 +25,9 @@
 #define RIGHT_ANALOG_X_AXIS 3
 #define RIGHT_ANALOG_Y_AXIS 4
 #define MAGIC_NUMBER_FOR_GAMEPAD 128
+
+#define MEGA 1000000
+#define SAMPLE_TIME 0.01
 
 int main(int argc, char *argv[])
 {
@@ -94,6 +98,8 @@ int main(int argc, char *argv[])
 
         sendto(client_socket_x, &x, sizeof(x), 0, (struct sockaddr *)&server_x, address_size_x);
         sendto(client_socket_y, &y, sizeof(y), 0, (struct sockaddr *)&server_y, address_size_y);
+
+        usleep(SAMPLE_TIME * MEGA);
     }
 
     hid_close(handle);
