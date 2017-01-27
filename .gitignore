@@ -1,1 +1,6 @@
+hid.c
+hidapi.h
+
 *.out
+*.o
+*.elf
