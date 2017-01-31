@@ -56,8 +56,8 @@ int main(int argc, char *argv[])
 
         signed char x, y;
 
-        x = buffer[LEFT_ANALOG_X_AXIS] - MAGIC_NUMBER_FOR_GAMEPAD;
-        y = buffer[RIGHT_ANALOG_Y_AXIS] - MAGIC_NUMBER_FOR_GAMEPAD;
+        x = buffer[RIGHT_ANALOG_X_AXIS] - MAGIC_NUMBER_FOR_GAMEPAD;
+        y = buffer[LEFT_ANALOG_Y_AXIS] - MAGIC_NUMBER_FOR_GAMEPAD;
         y += 1;
         y *= -1;
 
