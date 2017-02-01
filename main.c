@@ -46,8 +46,10 @@ int main(int argc, char *argv[])
 
     response = hid_init();
 
-    WSADATA wsa;
-    WSAStartup(MAKEWORD(2, 2), &wsa);
+    #ifdef WIN32
+        WSADATA wsa;
+        WSAStartup(MAKEWORD(2, 2), &wsa);
+    #endif
 
     handle = hid_open(LOGITECT_VID, GAMEPAD_PID, NULL);
 
