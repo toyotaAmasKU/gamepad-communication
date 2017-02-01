@@ -3,9 +3,14 @@
  * Created on: 01/28/2017
  */
 
-#include <arpa/inet.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
+#ifdef _WIN32
+    #include <winsock2.h>
+#else
+    #include <arpa/inet.h>
+    #include <sys/socket.h>
+    #include <netinet/in.h>
+#endif
+
 #include <string.h>
 
 struct sockaddr_in init_socket_address(const char *ip_address, const int port)
@@ -22,7 +27,11 @@ struct sockaddr_in init_socket_address(const char *ip_address, const int port)
 
 void udp_send(int client_socket, char byte, struct sockaddr_in server)
 {
-    socklen_t address_size;
+    #ifdef WIN32
+        int address_size;
+    #else
+        socklen_t address_size;
+    #endif
 
     address_size = sizeof(server);
 

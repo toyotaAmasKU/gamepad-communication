@@ -5,10 +5,18 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+#ifdef _WIN32
+    #include <windows.h>
+#else
+    #include <unistd.h>
+#endif
 
-#include <sys/socket.h>
-#include <netinet/in.h>
+#ifdef _WIN32
+    #include <winsock2.h>
+#else
+    #include <sys/socket.h>
+    #include <netinet/in.h>
+#endif
 
 #include "hidapi.h"
 #include "gamepad.h"
@@ -20,6 +28,7 @@
 #define SAMPLE_TIME 0.01
 
 #define MEGA 1000000
+#define KILO 1000
 
 int main(int argc, char *argv[])
 {
@@ -36,12 +45,21 @@ int main(int argc, char *argv[])
     int response;
 
     response = hid_init();
+
+    WSADATA wsa;
+    WSAStartup(MAKEWORD(2, 2), &wsa);
+
     handle = hid_open(LOGITECT_VID, GAMEPAD_PID, NULL);
 
     hid_set_nonblocking(handle, 1);
 
     struct sockaddr_in server_x, server_y;
-    int client_socket_x, client_socket_y;
+    
+    #ifdef WIN32
+        SOCKET client_socket_x, client_socket_y;
+    #else
+        int client_socket_x, client_socket_y;
+    #endif
 
     client_socket_x = socket(PF_INET, SOCK_DGRAM, 0);
     client_socket_y = socket(PF_INET, SOCK_DGRAM, 0);
@@ -66,7 +84,11 @@ int main(int argc, char *argv[])
         udp_send(client_socket_x, x, server_x);
         udp_send(client_socket_y, y, server_y);
 
-        usleep(SAMPLE_TIME * MEGA);
+        #ifdef WIN32
+            Sleep(SAMPLE_TIME * KILO);
+        #else
+            usleep(SAMPLE_TIME * MEGA);
+        #endif
     }
 
     hid_close(handle);
