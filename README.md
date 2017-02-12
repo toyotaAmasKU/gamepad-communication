@@ -11,8 +11,14 @@ mingw32-make.exe
 ```
 
 ### How to use:
+##### Linux
 ```
 ./main.elf <raspberri pi ip address> <x-axis port> <y-axis port>
+```
+may require superuser privileges.
+##### Windows
+```
+main.elf <raspberri pi ip address> <x-axis port> <y-axis port>
 ```
 may require superuser privileges.
 
