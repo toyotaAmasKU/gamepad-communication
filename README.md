@@ -14,7 +14,10 @@ mingw32-make.exe
 ```
 ./main.elf <raspberri pi ip address> <x-axis port> <y-axis port>
 ```
-may require superuser privileges
+may require superuser privileges.
+
+### Required software:
+1. [hidapi](https://github.com/signal11/hidapi)
 
 ### How to include hidapi:
 1. get [hidapi](https://github.com/signal11/hidapi)
