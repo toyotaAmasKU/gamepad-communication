@@ -1,5 +1,13 @@
 # gamepad-communication
 
+### About:
+##### Author:
+###### [Natchanan Thongtem](https://github.com/psychoAB)
+##### Description:
+* gamepad communication using hidapi and send to raspberry pi
+
+___
+
 ### How to build:
 ##### Linux
 ```
