@@ -3,7 +3,7 @@
 ##### Author:
 ###### [Natchanan Thongtem](https://github.com/psychoAB)
 ##### Description:
-###### gamepad communication using hidapi and send to raspberry pi
+###### gamepad communication using HIDAPI and send to Raspberry Pi
 ___
 
 ### Requirement:
