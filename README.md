@@ -22,12 +22,12 @@ mingw32-make.exe
 ### How to use:
 ##### Linux
 ```bash
-./main.elf <raspberri pi ip address> <x-axis port> <y-axis port>
+./main.elf <RASPBERRY_PI_IP_ADDRESS> <X_AXIS_PORT> <Y_AXIS_PORT>
 ```
 may require superuser privilege.
 ##### Windows
 ```
-main.elf <raspberri pi ip address> <x-axis port> <y-axis port>
+main.elf <RASPBERRY_PI_IP_ADDRESS> <X_AXIS_PORT> <Y_AXIS_PORT>
 ```
 may require superuser privilege.
 
