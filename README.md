@@ -31,7 +31,7 @@ main.elf <RASPBERRY_PI_IP_ADDRESS> <X_AXIS_PORT> <Y_AXIS_PORT>
 ```
 may require superuser privilege.
 
-### How to include hidapi:
+### How to include HIDAPI:
 1. get [HIDAPI](https://github.com/signal11/hidapi)
 2. install packages that required by HIDAPI
 3. copy __hidapi/hidapi/hidapi.h__ to __include/__
