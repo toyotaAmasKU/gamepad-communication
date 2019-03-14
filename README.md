@@ -35,4 +35,4 @@ may require superuser privilege.
 1. get [hidapi](https://github.com/signal11/hidapi)
 2. install packages that required by hidapi
 3. copy __hidapi/hidapi/hidapi.h__ to __include/__
-4. copy __hidapi/linux/hid.c__ (__hidapi/windows/hid.c__ if you are using Windows) to __repository directory__
+4. copy __hidapi/linux/hid.c__ to __repository directory__ *(__hidapi/windows/hid.c__ if you are using Windows)*
